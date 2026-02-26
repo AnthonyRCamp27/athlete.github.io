@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anthony Rashad | Track & Field Athlete</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0d0d0d;
+            --surface-color: #1a1a1a;
+            --text-main: #f4f4f4;
+            --text-muted: #aaaaaa;
+            --accent-color: #f5c518; /* Athletic Gold */
+            --accent-hover: #d4a70b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        h1, h2, h3 { text-transform: uppercase; font-weight: 900; }
+        h2 { font-size: 2.5rem; margin-bottom: 1rem; color: var(--accent-color); text-align: center; }
+        p { margin-bottom: 1.5rem; font-size: 1.1rem; color: var(--text-muted); }
+        
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            background-color: rgba(13, 13, 13, 0.9);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        .logo { font-size: 1.5rem; font-weight: 900; letter-spacing: 2px; }
+        .logo span { color: var(--accent-color); }
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover { color: var(--accent-color); }
+
+        /* Hero Section */
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 5%;
+            background: linear-gradient(rgba(13,13,13,0.8), rgba(13,13,13,0.9)), url('https://images.unsplash.com/photo-1552674605-171ff3ea36f0?auto=format&fit=crop&q=80') center/cover;
+        }
+        header h1 {
+            font-size: 4rem;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+        header p {
+            font-size: 1.5rem;
+            max-width: 600px;
+            color: var(--text-main);
+        }
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background-color: var(--accent-color);
+            color: #000;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 4px;
+            margin-top: 1.5rem;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-3px);
+        }
+
+        section { padding: 6rem 5%; }
+
+        /* Story Section */
+        .story-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: var(--surface-color);
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-left: 5px solid var(--accent-color);
+        }
+
+        /* Stats Section */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .stat-card {
+            background-color: var(--surface-color);
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+        .stat-card:hover {
+            transform: translateY(-10px);
+            border-bottom: 3px solid var(--accent-color);
+        }
+        .stat-card h3 {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+        .stat-list {
+            list-style: none;
+            text-align: left;
+            margin-top: 2rem;
+        }
+        .stat-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #333;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+        .stat-list li::before {
+            content: "▹";
+            color: var(--accent-color);
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        /* Slideshow Section */
+        .slideshow-container {
+            max-width: 1000px;
+            position: relative;
+            margin: auto;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+        }
+        .mySlides { display: none; }
+        .mySlides img {
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+        }
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 24px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            background-color: rgba(0,0,0,0.4);
+        }
+        .next { right: 0; border-radius: 3px 0 0 3px; }
+        .prev:hover, .next:hover { background-color: var(--accent-color); color: #000; }
+        .fade { animation-name: fade; animation-duration: 1.5s; }
+        @keyframes fade {
+            from {opacity: .4} 
+            to {opacity: 1}
+        }
+
+        /* Socials & Brand */
+        .brand-section {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .social-stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .social-box {
+            background: var(--surface-color);
+            padding: 1.5rem 3rem;
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
+        .social-box span {
+            display: block;
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            font-weight: 900;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #050505;
+            text-align: center;
+            padding: 3rem 5%;
+            border-top: 1px solid #222;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.5rem; }
+            .nav-links { display: none; } /* Add a hamburger menu for full deployment */
+            .story-container { padding: 1.5rem; }
+            .social-stats { flex-direction: column; gap: 1rem; }
+            .mySlides img { height: 400px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">ATHLETE<span>.</span></div>
+        <div class="nav-links">
+            <a href="#story">My Story</a>
+            <a href="#stats">Statistics</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#brand">Partnership</a>
+        </div>
+    </nav>
+
+    <header>
+        <h1>Defying Gravity.</h1>
+        <p>Top 25 U.S. Long Jumper | Elite High Jumper</p>
+        <a href="#brand" class="btn">Partner With Me</a>
+    </header>
+
+    <section id="story">
+        <h2>My Story</h2>
+        <div class="story-container">
+            <p>I was born in St. Louis and raised between East St. Louis and Belleville, Illinois, where pride, resilience, and a championship mindset are part of the culture. That environment shaped my work ethic and competitive drive, and I bring that same mentality onto the runway every time I compete.</p>
+            <p>I began my college career at the junior college level as a 22-foot long jumper and 6-foot high jumper. In two seasons, I developed into a national finalist, improving to 23 feet in the long jump and 6'8" in the high jump. After transferring to Division I, I continued that progression, becoming a conference champion and school record holder while developing into a consistent 25-foot long jumper and elite high jumper.</p>
+            <p>My career has been defined by steady progression, resilience, and the ability to elevate at each new level of competition. I am now consistently jumping 25 feet and positioning myself among the top long jumpers in the United States.</p>
+            <p>This year, I will be competing at major national-level meets and pursuing opportunities on bigger stages against elite fields. My goal is not to rank top 20 or top 10 in the U.S., but to compete for a top-three national standing and establish myself among the best in the world.</p>
+        </div>
+    </section>
+
+    <section id="stats">
+        <h2>Athletic Statistics</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3 style="font-size: 1.8rem; color: white;">Personal Records</h3>
+                <h3 style="margin-top: 1rem;">7.78m</h3>
+                <p>Long Jump (Indoor)</p>
+                <h3>7.77m</h3>
+                <p>Long Jump (Outdoor)</p>
+                <h3>2.09m</h3>
+                <p>High Jump PR</p>
+                <div style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #333;">
+                    <strong style="color: var(--accent-color);">Average Top Jumps:</strong> 7.67m<br>
+                    <strong style="color: var(--accent-color);">Status:</strong> Consistent 7.60m+ performer
+                </div>
+            </div>
+
+            <div class="stat-card" style="grid-column: span 2;">
+                <h3 style="font-size: 1.8rem; color: white;">Career Highlights</h3>
+                <ul class="stat-list">
+                    <li>Top 25 U.S. Long Jump (Outdoor, 2024)</li>
+                    <li>Top 20 U.S. Long Jump (Indoor, 2024)</li>
+                    <li>2× NCAA West Preliminary Round Qualifier — Long Jump</li>
+                    <li>UWM School Record Holder — Outdoor Long Jump</li>
+                    <li>Horizon League Championship Meet Record Holder — Outdoor Long Jump</li>
+                    <li>2× Horizon League Champion — Outdoor Long Jump</li>
+                    <li>Horizon League Champion — High Jump</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery">
+        <h2>In Action</h2>
+        <div class="slideshow-container">
+            <div class="mySlides fade">
+                <img src="/Users/soupsss/Desktop/Athlete Website/Picture1.JPG" alt="Track Image 1">
+            </div>
+            <div class="mySlides fade">
+                <img src="/Users/soupsss/Desktop/Athlete Website/Picture2.JPG" alt="Track Image 2">
+            </div>
+            <div class="mySlides fade">
+                <img src="/Users/soupsss/Desktop/Athlete Website/Picture3.JPG" alt="Track Image 3">
+            </div>
+
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+    </section>
+
+    <section id="brand">
+        <div class="brand-section">
+            <h2>Brand Partnership</h2>
+            <p>I am seeking to partner with a brand that values performance, resilience, and upward momentum. I aim to represent more than results by sharing a story of growth, discipline, and belief. I am prepared to represent a brand with professionalism, competitive excellence, and impact both on and off the runway.</p>
+            
+            <div class="social-stats">
+                <div class="social-box">
+                    <span>@Antho_618</span>
+                    Instagram<br>
+                    74K+ views | 529 followers
+                </div>
+                <div class="social-box">
+                    <span>@Rashadant27</span>
+                    TikTok<br>
+                    28K+ views | 158 followers
+                </div>
+            </div>
+
+            <a href="mailto:your-email@example.com" class="btn" style="margin-top: 3rem;">Contact Me</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Track & Field Athlete. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        // Next/previous controls
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            if (n > slides.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = slides.length}
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slides[slideIndex-1].style.display = "block";
+        }
+
+        // Optional: Auto-play slideshow
+        setInterval(function() {
+            plusSlides(1);
+        }, 5000); // Change image every 5 seconds
+    </script>
+</body>
+</html>
